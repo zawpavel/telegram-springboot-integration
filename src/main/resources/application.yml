@@ -1,0 +1,32 @@
+#section if you want to enable HTTPS. just remove if you use UpdateListener, not Webhook
+server:
+  http2:
+    enabled: true
+  port: 8443
+  ssl:
+    enabled: true
+    key-store-type: PKCS12
+    key-store: classpath:yourp12file.p12
+    key-store-password: ${KS_PASSWORD}
+    key-alias: youralias
+    protocol: TLS
+    enabled-protocols: TLSv1.2
+
+#section if you want to write log into some file
+logging:
+  file:
+    name: ./app.log
+
+#section if you want to use database
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/your_db"
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+telegram:
+  token: ${BOT_TOKEN}
